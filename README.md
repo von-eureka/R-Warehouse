@@ -7,7 +7,8 @@ exercise1<-subset(`stock-market-data`,grepl("^.*8.*$",symbol))  ##利用grepl函
 exercise1<-unique(exercise1$symbol)  ##利用unique函数去掉筛选结果中重复的值  
 subset；从某一数据框选出某符合条件的数据或者相关列，本例具体用法为subset(数据框，条件，显示指定列#不指定则全部列输出，-用来排除指定列)  
 grepl：相近的还有grep函数，grep函数返回找到的位置，grepl函数返回要查找的内容。本例具体用法为grepl(条件，在何对象中查找)  
-unique:去重复值，本例具体用法为unique(需要去重复值的对象)
+unique:去重复值，本例具体用法为unique(需要去重复值的对象)  
+  
 Day2 每天上涨和下跌的股票各有多少？  
 exercise2<-`stock-market-data`  ##备份原数据
 exercise2$sum=ifelse(`stock-market-data`$open<`stock-market-data`$close,"UP","DOWN")  ##利用ifelse函数判断股票涨跌，如果涨了，即开盘价小于收盘价，那么就为“up”,反之则为“DOWN”；数据存储在exercise2数据框新增的sum列。  
