@@ -32,13 +32,13 @@ exercises5<-aggregate(x=exercise2$industry,by=list(exercise2$date,exercise2$indu
 6、股票数最大的行业和总成交额最大的行业是否总是同一个行业？   
 exercises6<-aggregate(x=exercise2$amount,by=list(exercise2$date,exercise2$industry),FUN=sum)  ##这里把成交额都加起来，得各个行业的总成交额。  
 实际上，如果要满足题目要求的话 只需要排序exercises6和exercises5即可，而如果想要更直观的看到，恐怕需要借用apply函数。  
-rm:删除函数，具体用法为rm(对象名)
+rm:删除函数，具体用法为rm(对象名)  
 substr：字符串选取函数，具体用法为substr(选取对象，选取开始位数，选取结束位数)    
   
 Day4 7、每天涨幅超过5%、跌幅超过5%的股票各有多少？  
 exercise7<-`stock-market-data`  ##备份原数据    
 attach(exercise7)  ##建立数据表内数据索引，因为之后要用到多次  
 exercise7$ret<-(close-open)/open  ##我们在exercise7里建立一个新列来存放计算的股票涨跌率  
-exercise7<-sbuset(exercise7,ret>0.05|ret< -0.05)  ##注意这里负数符号和“<”之间一定要加空格，否则R语言会把它默认为赋值符号，出现“not found”的报错。这里利用subset函数筛选出满足题目要求的。subset函数中“&”是“且”的意思，而“|”是“或”  
+exercises7<-subset(exercise7,ret>0.05|ret< -0.05)  ##注意这里负数符号和“<”之间一定要加空格，否则R语言会把它默认为赋值符号，出现“not found”的报错。这里利用subset函数筛选出满足题目要求的。subset函数中“&”是“且”的意思，而“|”是“或”  
 exercises7$updown<-ifelse(exercises7$ret>0.05,"up","Down")  ##给这些股票创建一列数据存储  
-exercises7<-aggregate(exercises7$updown,by=list(exercises7$date,exercise7s$updown),FUN=length)  ## 利用aggregate函数进行分类即可。
+exercises7<-aggregate(exercises7$updown,by=list(exercises7$date,exercises7$updown),FUN=length)  ## 利用aggregate函数进行分类即可。
